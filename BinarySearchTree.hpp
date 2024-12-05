@@ -400,8 +400,7 @@ private:
 
     if (less(query, node->datum)) { return find_impl(node->left,query,less); }
     else if (less(node->datum, query)) { return find_impl(node->right,query,less); }
-    
-    return node;    
+    else return node;
   }
 
   // REQUIRES: item is not already contained in the tree rooted at 'node'
@@ -423,6 +422,8 @@ private:
     if (empty_impl(node)) {
       Node* new_root = new Node();
       new_root->datum = item;
+      new_root->left = nullptr;
+      new_root->right = nullptr;
       return new_root;
     }
     if (less(item, node->datum)) { node->left = insert_impl(node->left,item,less); }
