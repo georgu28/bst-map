@@ -160,7 +160,8 @@ V& Map<K, V, C>::operator[](const K& k) {
 }
 
 template <typename K, typename V, typename C>
-std::pair<typename Map<K, V, C>::Iterator, bool> Map<K, V, C>::insert(const Pair_type &val) {
+std::pair<typename Map<K, V, C>::Iterator, bool> 
+          Map<K, V, C>::insert(const Pair_type &val) {
   auto it = entries.find(val);
   bool exists = false;
 

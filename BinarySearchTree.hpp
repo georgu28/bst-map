@@ -506,8 +506,8 @@ private:
     if (empty_impl(node)) return;
 
     os << node->datum << " ";
-    traverse_inorder_impl(node->left,os);
-    traverse_inorder_impl(node->right,os);
+    traverse_preorder_impl(node->left,os);
+    traverse_preorder_impl(node->right,os);
   }
 
   // EFFECTS : Returns a pointer to the Node containing the smallest element
