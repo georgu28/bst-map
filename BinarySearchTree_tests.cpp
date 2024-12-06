@@ -218,6 +218,44 @@ TEST(BinarySearchTree_copy_tests_edge_case) {
     bst2.traverse_preorder(oss1);
     copy_bst2.traverse_preorder(oss2);
     ASSERT_EQUAL(oss1.str(), oss2.str());
+
+    BinarySearchTree<int> original;
+    BinarySearchTree<int> emptycopy(original);
+    ASSERT_TRUE(emptycopy.empty());
+
+    original.insert(10);
+    original.insert(5);
+    original.insert(15);
+
+    BinarySearchTree<int> copy(original);
+    
+
+    // Modify the original tree
+    original.insert(20);
+
+    // Verify the copy is unaffected
+    auto it = copy.find(20);
+    ASSERT_EQUAL(it, copy.end());
+    it = copy.find(10);
+    ASSERT_EQUAL(*it, 10);
+    it = copy.find(5);
+    ASSERT_EQUAL(*it, 5);
+    it = copy.find(15);
+    ASSERT_EQUAL(*it, 15);
+
+    copy.insert(30);
+
+    it = original.find(30);
+    ASSERT_EQUAL(it, original.end());
+    it = original.find(20);
+    ASSERT_EQUAL(*it, 20);
+    it = original.find(10);
+    ASSERT_EQUAL(*it, 10);
+    it = original.find(5);
+    ASSERT_EQUAL(*it, 5);
+    it = original.find(15);
+    ASSERT_EQUAL(*it, 15);
+
 }
 
 TEST_MAIN()
